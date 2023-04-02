@@ -1,31 +1,18 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+// import {Text, View, StyleSheet} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+// import {createStackNavigator} from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import  HomePage  from './pages/HomePage/HomePage';
 
+const Stack = createNativeStackNavigator();
 
-const styles = StyleSheet.create({
-  center: {
-    alignItems: 'center',
-  },
-});
-
-type GreetingProps = {
-  name: string;
-};
-
-const Greeting = (props: GreetingProps) => {
+export default function App() {
   return (
-    <View style={styles.center}>
-      <Text>Hello World, I'm {props.name}!</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="HomePage" component= {HomePage} options={{ headerShown: false }}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
-
-const App = () => {
-  return (
-      <View>
-        <Greeting name="Jose" />
-      </View>
-  );
-};
-
-export default App;
+}
