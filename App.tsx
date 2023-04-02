@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
+
 const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
@@ -21,9 +22,9 @@ const Greeting = (props: GreetingProps) => {
 
 const App = () => {
   return (
-    <View>
-      <Greeting name="Jose" />
-    </View>
+      <View>
+        <Greeting name="Jose" />
+      </View>
   );
 };
 
