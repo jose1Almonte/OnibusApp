@@ -62,6 +62,8 @@ const styles = StyleSheet.create({
   },
 
   textInputEmail:{
+    // justifyContent: 'center',
+    // width: '50%',
     // backgroundColor: 'green',
   },
 
