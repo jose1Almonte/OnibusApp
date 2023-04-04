@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
@@ -15,7 +15,15 @@ const HomePageScreen = () => {
         end={{ x: 0, y: 1 }}
         style={styles.gradient}
       >
-        <Text>HomePage Screen </Text>
+        <Text style = {styles.text}>HomePage Screen </Text>
+
+        <View style = {styles.inputBox}>
+          <TextInput style = {styles.textInputEmail} placeholder="Email, please" />
+
+          <TextInput style = {styles.textInputPassword} placeholder="Password, please" />
+
+        </View>
+
       </LinearGradient>
     </View>
   );
@@ -24,7 +32,7 @@ const HomePageScreen = () => {
 const HomePage = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="HomePage" component={HomePageScreen} options={{ headerShown: false }}/>
+      <Stack.Screen name="HomePageScreen" component={HomePageScreen} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 };
@@ -42,5 +50,22 @@ const styles = StyleSheet.create({
 
   gradient: {
     flex: 1,
+  },
+
+  text: {
+    // backgroundColor: 'red',
+    flex: 1,
+  },
+
+  inputBox: {
+    flex: 3,
+  },
+
+  textInputEmail:{
+    // backgroundColor: 'green',
+  },
+
+  textInputPassword:{
+    // backgroundColor: 'yellow',
   },
 });
