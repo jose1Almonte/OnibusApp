@@ -4,9 +4,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 
 
+
 const Stack = createNativeStackNavigator();
 
-const HomePageScreen = () => {
+const HomePageScreen = ({navigation}) => {
+
   return (
     <View style = {styles.backGround}>
       <LinearGradient
@@ -26,10 +28,30 @@ const HomePageScreen = () => {
           <TextInput style = {styles.textInputPassword} placeholder="Password, please" secureTextEntry />
 
           <View style = {styles.sendButton}>
-            <Button title="Press me" onPress={() => Alert.alert('Button pressed!')} />
+            <Button title="Press me" onPress={() => navigation.navigate('ProfileScreen')} />
           </View>
 
         </View>
+
+      </LinearGradient>
+    </View>
+  );
+};
+
+const ProfileScreen = ({navigation}) => {
+  return (
+    <View style = {styles.backGround}>
+      <LinearGradient
+        colors={['#4FB0CE', 'rgba(79, 176, 206, 0.0422836)']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        style={styles.gradient}
+      >
+
+        <Text>
+          Hola
+        </Text>
+        <Button title="Press me" onPress={() => navigation.navigate('HomePageScreen')} />
 
       </LinearGradient>
     </View>
@@ -40,6 +62,7 @@ const HomePage = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="HomePageScreen" component={HomePageScreen} options={{ headerShown: false }}/>
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 };
