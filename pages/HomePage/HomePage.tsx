@@ -68,12 +68,20 @@ const styles = StyleSheet.create({
   inputBox: {
     flex: 3,
     alignItems: 'center',
+    backgroundColor: 'red',
   },
 
   textInputEmail:{
-    backgroundColor: 'green',
+    // backgroundColor: 'green',
     width: '50%',
     textAlign: 'center',
+    backgroundColor: '#FFFBED',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    borderRadius: 5,
   },
 
   textInputPassword:{
