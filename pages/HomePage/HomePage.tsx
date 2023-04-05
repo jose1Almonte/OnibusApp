@@ -15,7 +15,10 @@ const HomePageScreen = () => {
         end={{ x: 0, y: 1 }}
         style={styles.gradient}
       >
-        <Text style = {styles.text}>HomePage Screen </Text>
+        <View style = {styles.titleBox}>
+          <Text style = {styles.text}>HomePage Screen </Text>
+
+        </View>
 
         <View style = {styles.inputBox}>
           <TextInput style = {styles.textInputEmail} placeholder="Email, please" />
@@ -52,22 +55,30 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+  titleBox:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
   text: {
     // backgroundColor: 'red',
-    flex: 1,
   },
 
   inputBox: {
     flex: 3,
+    alignItems: 'center',
   },
 
   textInputEmail:{
-    // justifyContent: 'center',
-    // width: '50%',
-    // backgroundColor: 'green',
+    backgroundColor: 'green',
+    width: '50%',
+    textAlign: 'center',
   },
 
   textInputPassword:{
-    // backgroundColor: 'yellow',
+    width: '50%',
+    textAlign: 'center',
+    backgroundColor: 'yellow',
   },
 });
