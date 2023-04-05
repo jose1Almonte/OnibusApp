@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Button, Alert } from 'react-native';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
@@ -23,7 +23,11 @@ const HomePageScreen = () => {
         <View style = {styles.inputBox}>
           <TextInput style = {styles.textInputEmail} placeholder="Email, please" />
 
-          <TextInput style = {styles.textInputPassword} placeholder="Password, please" />
+          <TextInput style = {styles.textInputPassword} placeholder="Password, please" secureTextEntry />
+
+          <View style = {styles.sendButton}>
+            <Button title="Press me" onPress={() => Alert.alert('Button pressed!')} />
+          </View>
 
         </View>
 
@@ -45,7 +49,6 @@ export default HomePage;
 const styles = StyleSheet.create({
   backGround: {
     // backgroundColor: '#4FB0CE',
-    // backgroundColor: 'conic-gradient(from 228.68deg at 49.87% 47.01%, rgba(79, 176, 206, 0) 0deg, #4FB0CE 177.94deg, rgba(79, 176, 206, 0.0422836) 331.84deg, rgba(79, 176, 206, 0) 360deg)',
     // mixBlendMode: 'normal',
     // height: '100%',
     flex: 1,
@@ -68,25 +71,28 @@ const styles = StyleSheet.create({
   inputBox: {
     flex: 3,
     alignItems: 'center',
-    backgroundColor: 'red',
+    // marginHorizontal: 20,
+    // backgroundColor: 'red',
   },
 
   textInputEmail:{
-    // backgroundColor: 'green',
+    marginVertical: '3%',
     width: '50%',
     textAlign: 'center',
     backgroundColor: '#FFFBED',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
     borderRadius: 5,
   },
 
   textInputPassword:{
+    marginVertical: '3%',
     width: '50%',
     textAlign: 'center',
-    backgroundColor: 'yellow',
+    backgroundColor: '#FFFBED',
+    borderRadius: 5,
   },
+
+  sendButton:{
+    marginVertical: '3%',
+  },
+
 });
