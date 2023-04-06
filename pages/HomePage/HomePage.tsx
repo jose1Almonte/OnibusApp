@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: '#FFFBED',
     borderRadius: 5,
+    color: 'black',
   },
 
   textInputPassword:{
@@ -112,6 +113,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: '#FFFBED',
     borderRadius: 5,
+    color: 'black',
   },
 
   sendButton:{
