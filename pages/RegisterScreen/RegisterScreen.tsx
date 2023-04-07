@@ -5,25 +5,25 @@ import { NavigationProp } from '@react-navigation/native';
 
 interface RegisterProps {
     navigation: NavigationProp<Record<string, object | undefined>>;
-  }
+}
 
-  interface InputProps {
-      selectedButton: string;
-    }
+interface InputProps {
+    selectedButton: string;
+}
 
 const InputsBox = ({ selectedButton }: InputProps) => {
-      if (selectedButton === 'driver') {
+    if (selectedButton === 'driver') {
         return <DriverInputs />;
-      } else if (selectedButton === 'client') {
+    } else if (selectedButton === 'client') {
         return <ClientInputs />;
-      } else {
+    } else {
         return null;
-      }
-    };
+    }
+};
 
 const TitleBox = ({ selectedButton }: InputProps) => {
         if (selectedButton === 'driver') {
-          return <Text> Hi Driver. Write your info to continue!</Text>;
+            return <Text> Hi Driver. Write your info to continue!</Text>;
         } else if (selectedButton === 'client') {
             return <Text> Hi Client. Write your info to continue!</Text>;
         } else {
@@ -32,21 +32,21 @@ const TitleBox = ({ selectedButton }: InputProps) => {
 
 };
 
-  const DriverInputs = () => {
+const DriverInputs = () => {
     return (
-      <View>
-        <Text>Driver Inputs</Text>
-      </View>
+        <View>
+            <Text>Driver Inputs</Text>
+        </View>
     );
-  };
+};
 
-  const ClientInputs = () => {
+const ClientInputs = () => {
     return (
-      <View>
-        <Text>Client Inputs</Text>
-      </View>
+        <View>
+            <Text>Client Inputs</Text>
+        </View>
     );
-  };
+};
 
 
 const RegisterScreen = ({navigation}: RegisterProps) => {
