@@ -2,13 +2,16 @@ import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
-import LoginPage from '../LoginPage/LoginPage';
+import { NavigationProp } from '@react-navigation/native';
 
 
+interface MainProps {
+  navigation: NavigationProp<Record<string, object | undefined>>;
+}
 
 const Stack = createNativeStackNavigator();
 
-const HomePageScreen = ({navigation}) => {
+const LoginScreen = ({navigation}: MainProps) => {
 
   return (
     <View style = {styles.backGround}>
@@ -19,27 +22,34 @@ const HomePageScreen = ({navigation}) => {
         style={styles.gradient}
       >
         <View style = {styles.titleBox}>
-          <Text style = {styles.text}>HomePage Screen </Text>
-
+          <Text style = {styles.text}>Login Screen </Text>
         </View>
 
         <View style = {styles.inputBox}>
+
+          <View style = {styles.textInputBox}>
+            <Text>Email</Text>
+          </View>
+
           <TextInput style = {styles.textInputEmail} placeholder="Email, please" />
+
+          <View style = {styles.textInputBox}>
+            <Text>Password</Text>
+          </View>
 
           <TextInput style = {styles.textInputPassword} placeholder="Password, please" secureTextEntry />
 
           <View style = {styles.sendButton}>
-            <Button title="Press me" onPress={() => navigation.navigate('ProfileScreen')} />
+            <Button title="Press me" onPress={() => navigation.navigate('RegisterScreen')} />
           </View>
 
         </View>
-
       </LinearGradient>
     </View>
   );
 };
 
-const ProfileScreen = ({navigation}) => {
+const RegisterScreen = ({navigation}: MainProps) => {
   return (
     <View style = {styles.backGround}>
       <LinearGradient
@@ -48,11 +58,13 @@ const ProfileScreen = ({navigation}) => {
         end={{ x: 0, y: 1 }}
         style={styles.gradient}
       >
+        <View>
 
-        <Text>
-          Hola
-        </Text>
-        <Button title="Press me" onPress={() => navigation.navigate('LoginPage')} />
+          <Text> Hola </Text>
+
+        </View>
+
+        <Button title="Press me" onPress={() => navigation.navigate('LoginScreen')} />
 
       </LinearGradient>
     </View>
@@ -62,9 +74,8 @@ const ProfileScreen = ({navigation}) => {
 const Main = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="HomePageScreen" component={HomePageScreen} options={{ headerShown: false }}/>
-      <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }}/>
-      <Stack.Screen name="LoginPage" component={LoginPage} options={{ headerShown: false }}/>
+      <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }}/>
+      <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 };
@@ -98,6 +109,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // marginHorizontal: 20,
     // backgroundColor: 'red',
+  },
+
+  textInputBox:{
+    width: '50%',
   },
 
   textInputEmail:{
