@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput, ScrollView } from 'react-native';
 import React, {useState} from 'react';
 import { LinearBackground } from '../../Layouts/LinearBackground';
 import { NavigationProp } from '@react-navigation/native';
@@ -34,17 +34,77 @@ const TitleBox = ({ selectedButton }: InputProps) => {
 
 const DriverInputs = () => {
     return (
-        <View>
-            <Text>Driver Inputs</Text>
+        <ScrollView style = {styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
+
+        <View style = {styles.multipleInputBox}>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Email</Text>
+                <TextInput style = {styles.littleInput} placeholder="Ex. Oni@email.com" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Password</Text>
+                <TextInput style = {styles.littleInput} placeholder="min 6 caract" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>ConfirmPassword</Text>
+                <TextInput style = {styles.littleInput} placeholder="confirm your password" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Born date</Text>
+                <TextInput style = {styles.littleInput} placeholder="Your born date" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>CI</Text>
+                <TextInput style = {styles.littleInput} placeholder="CI" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>CI picture</Text>
+                <TextInput style = {styles.littleInput} placeholder="Your CI picture" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Number plaque</Text>
+                <TextInput style = {styles.littleInput} placeholder="Number plaque" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>doctor certified</Text>
+                <TextInput style = {styles.littleInput} placeholder="Your certified" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Secure RCV</Text>
+                <TextInput style = {styles.littleInput} placeholder="Your secure RCV" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Home address</Text>
+                <TextInput style = {styles.littleInput} placeholder="Your Home address" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Email</Text>
+                <TextInput style = {styles.littleInput} placeholder="Ex. Oni@email.com" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Email</Text>
+                <TextInput style = {styles.littleInput} placeholder="Ex. Oni@email.com" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Email</Text>
+                <TextInput style = {styles.littleInput} placeholder="Ex. Oni@email.com" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Email</Text>
+                <TextInput style = {styles.littleInput} placeholder="Ex. Oni@email.com" placeholderTextColor={'grey'}/>
+            </View>
+
+
         </View>
+        </ScrollView>
     );
 };
 
 const ClientInputs = () => {
     return (
-        <View>
+        <>
             <Text>Client Inputs</Text>
-        </View>
+        </>
     );
 };
 
@@ -53,6 +113,8 @@ const RegisterScreen = ({navigation}: RegisterProps) => {
     const [selectedButton, setSelectedButton] = useState('');
 
     return (
+        
+
         <LinearBackground
         colors={['#4FB0CE', 'rgba(79, 176, 206, 0.0422836)']}
         start={{ x: 0, y: 0 }}
@@ -92,6 +154,19 @@ const RegisterScreen = ({navigation}: RegisterProps) => {
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
+
+    scrollContainer: {
+        width: '100%',
+        flex: 1,
+        // paddingBottom: 30 // ajuste esto según sea necesario para evitar que el contenido se corte en la parte inferior
+      },
+
+    contentContainer: {
+        backgroundColor: 'rgba(0,0,0,0)',
+        // paddingVertical: 16,
+        // paddingHorizontal: 20,
+    },
+
     backGround: {
       // backgroundColor: '#4FB0CE',
       // mixBlendMode: 'normal',
@@ -118,7 +193,7 @@ const styles = StyleSheet.create({
 
     selectionUserType: {
         flex: 0.5,
-        backgroundColor: 'orange',
+        // backgroundColor: 'orange',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -130,6 +205,58 @@ const styles = StyleSheet.create({
 
     selectionUserTypeButtonClient: {
         width: '40%',
+    },
+
+    multipleInputBox: {
+        alignItems: 'center',
+        justifyContent:'center',
+        width: '100%',
+    },
+
+    singleInputBox: {
+        // backgroundColor: 'red',
+        width: '65%',
+        paddingTop: 12.5,
+        paddingBottom: 12.5,
+    },
+
+    littleTitle: {
+        color: 'black',
+        fontSize: 20,
+    },
+
+    littleInput: {
+        width: '100%',
+        backgroundColor: '#FFFBED',
+        borderRadius: 5,
+        color: 'black',
+    },
+
+    fadingContainer: {
+        flex: 1,
+        backgroundColor: 'white',
+        paddingBottom: 20,
+        paddingHorizontal: 10,
+        marginHorizontal: 10,
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+
+    fadingView: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 20,
+        backgroundColor: 'white',
+        opacity: 0.5,
     },
 
 });
