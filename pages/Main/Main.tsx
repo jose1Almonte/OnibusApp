@@ -1,9 +1,34 @@
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
-import React from 'react';
+import { View, Text, StyleSheet, TextInput, Button, ViewStyle } from 'react-native';
+import React, {ReactNode} from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationProp } from '@react-navigation/native';
+import DriverProfile from '../DriverProfile/DriverProfile';
 
+
+interface LinearBackgroundProps {
+  children: ReactNode;
+  colors: string[];
+  start: { x: number; y: number };
+  end: { x: number; y: number };
+  style: any;
+}
+
+const LinearBackground = ({
+  children,
+  colors,
+  start,
+  end,
+  style,
+}: LinearBackgroundProps) => {
+  return (
+    <View style={[styles.gradient , style]}>
+      <LinearGradient colors={colors} start={start} end={end} style={styles.gradient}>
+        {children}
+      </LinearGradient>
+    </View>
+  );
+};
 
 interface MainProps {
   navigation: NavigationProp<Record<string, object | undefined>>;
@@ -14,13 +39,13 @@ const Stack = createNativeStackNavigator();
 const LoginScreen = ({navigation}: MainProps) => {
 
   return (
-    <View style = {styles.backGround}>
-      <LinearGradient
-        colors={['#4FB0CE', 'rgba(79, 176, 206, 0.0422836)']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0, y: 1 }}
-        style={styles.gradient}
-      >
+      <LinearBackground
+      colors={['#4FB0CE', 'rgba(79, 176, 206, 0.0422836)']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      style={styles.gradient}
+    >
+
         <View style = {styles.titleBox}>
           <Text style = {styles.text}>Login Screen </Text>
         </View>
@@ -44,20 +69,18 @@ const LoginScreen = ({navigation}: MainProps) => {
           </View>
 
         </View>
-      </LinearGradient>
-    </View>
+      </LinearBackground>
   );
 };
 
 const RegisterScreen = ({navigation}: MainProps) => {
   return (
-    <View style = {styles.backGround}>
-      <LinearGradient
-        colors={['#4FB0CE', 'rgba(79, 176, 206, 0.0422836)']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0, y: 1 }}
-        style={styles.gradient}
-      >
+    <LinearBackground
+      colors={['#4FB0CE', 'rgba(79, 176, 206, 0.0422836)']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      style={styles.gradient}
+    >
         <View>
 
           <Text> Hola </Text>
@@ -66,8 +89,7 @@ const RegisterScreen = ({navigation}: MainProps) => {
 
         <Button title="Press me" onPress={() => navigation.navigate('LoginScreen')} />
 
-      </LinearGradient>
-    </View>
+    </LinearBackground>
   );
 };
 
@@ -76,6 +98,7 @@ const Main = () => {
     <Stack.Navigator>
       <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }}/>
       <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{ headerShown: false }}/>
+      <Stack.Screen name="DriverProfile" component={DriverProfile} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 };
