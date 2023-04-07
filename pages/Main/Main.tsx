@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
+import LoginPage from '../LoginPage/LoginPage';
 
 
 
@@ -51,23 +52,24 @@ const ProfileScreen = ({navigation}) => {
         <Text>
           Hola
         </Text>
-        <Button title="Press me" onPress={() => navigation.navigate('HomePageScreen')} />
+        <Button title="Press me" onPress={() => navigation.navigate('LoginPage')} />
 
       </LinearGradient>
     </View>
   );
 };
 
-const HomePage = () => {
+const Main = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="HomePageScreen" component={HomePageScreen} options={{ headerShown: false }}/>
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }}/>
+      <Stack.Screen name="LoginPage" component={LoginPage} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 };
 
-export default HomePage;
+export default Main;
 
 const styles = StyleSheet.create({
   backGround: {
