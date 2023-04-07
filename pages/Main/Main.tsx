@@ -1,34 +1,35 @@
-import { View, Text, StyleSheet, TextInput, Button, ViewStyle } from 'react-native';
-import React, {ReactNode} from 'react';
+import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LinearGradient from 'react-native-linear-gradient';
+// import LinearGradient from 'react-native-linear-gradient';
 import { NavigationProp } from '@react-navigation/native';
 import DriverProfile from '../DriverProfile/DriverProfile';
+import {LinearBackground} from '../../Layouts/LinearBackground';
 
 
-interface LinearBackgroundProps {
-  children: ReactNode;
-  colors: string[];
-  start: { x: number; y: number };
-  end: { x: number; y: number };
-  style: any;
-}
+// interface LinearBackgroundProps {
+//   children: ReactNode;
+//   colors: string[];
+//   start: { x: number; y: number };
+//   end: { x: number; y: number };
+//   style: any;
+// }
 
-const LinearBackground = ({
-  children,
-  colors,
-  start,
-  end,
-  style,
-}: LinearBackgroundProps) => {
-  return (
-    <View style={[styles.gradient , style]}>
-      <LinearGradient colors={colors} start={start} end={end} style={styles.gradient}>
-        {children}
-      </LinearGradient>
-    </View>
-  );
-};
+// const LinearBackground = ({
+//   children,
+//   colors,
+//   start,
+//   end,
+//   style,
+// }: LinearBackgroundProps) => {
+//   return (
+//     <View style={[styles.gradient , style]}>
+//       <LinearGradient colors={colors} start={start} end={end} style={styles.gradient}>
+//         {children}
+//       </LinearGradient>
+//     </View>
+//   );
+// };
 
 interface MainProps {
   navigation: NavigationProp<Record<string, object | undefined>>;
