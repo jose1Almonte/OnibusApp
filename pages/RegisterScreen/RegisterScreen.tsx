@@ -38,12 +38,20 @@ const DriverInputs = () => {
 
         <View style = {styles.multipleInputBox}>
             <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Name</Text>
+                <TextInput style = {styles.littleInput} placeholder="Your first and last name" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Surname</Text>
+                <TextInput style = {styles.littleInput} placeholder="All your surname" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>Email</Text>
                 <TextInput style = {styles.littleInput} placeholder="Ex. Oni@email.com" placeholderTextColor={'grey'}/>
             </View>
             <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>Password</Text>
-                <TextInput style = {styles.littleInput} placeholder="min 6 caract" placeholderTextColor={'grey'}/>
+                <TextInput style = {styles.littleInput} placeholder="min 6 carts." placeholderTextColor={'grey'}/>
             </View>
             <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>ConfirmPassword</Text>
@@ -78,22 +86,16 @@ const DriverInputs = () => {
                 <TextInput style = {styles.littleInput} placeholder="Your Home address" placeholderTextColor={'grey'}/>
             </View>
             <View style = {styles.singleInputBox}>
-                <Text style = {styles.littleTitle}>Email</Text>
-                <TextInput style = {styles.littleInput} placeholder="Ex. Oni@email.com" placeholderTextColor={'grey'}/>
+                <Text style = {styles.littleTitle}>Circulation carnet</Text>
+                <TextInput style = {styles.littleInput} placeholder="Your circulation carnet" placeholderTextColor={'grey'}/>
             </View>
             <View style = {styles.singleInputBox}>
-                <Text style = {styles.littleTitle}>Email</Text>
-                <TextInput style = {styles.littleInput} placeholder="Ex. Oni@email.com" placeholderTextColor={'grey'}/>
+                <Text style = {styles.littleTitle}>Personal selfie</Text>
+                <TextInput style = {styles.littleInput} placeholder="Your personal selfie" placeholderTextColor={'grey'}/>
             </View>
-            <View style = {styles.singleInputBox}>
-                <Text style = {styles.littleTitle}>Email</Text>
-                <TextInput style = {styles.littleInput} placeholder="Ex. Oni@email.com" placeholderTextColor={'grey'}/>
+            <View style={styles.singleSendButtonBox}>
+                <Button title="Send info"/>
             </View>
-            <View style = {styles.singleInputBox}>
-                <Text style = {styles.littleTitle}>Email</Text>
-                <TextInput style = {styles.littleInput} placeholder="Ex. Oni@email.com" placeholderTextColor={'grey'}/>
-            </View>
-
 
         </View>
         </ScrollView>
@@ -113,7 +115,6 @@ const RegisterScreen = ({navigation}: RegisterProps) => {
     const [selectedButton, setSelectedButton] = useState('');
 
     return (
-        
 
         <LinearBackground
         colors={['#4FB0CE', 'rgba(79, 176, 206, 0.0422836)']}
@@ -219,7 +220,7 @@ const styles = StyleSheet.create({
         paddingTop: 12.5,
         paddingBottom: 12.5,
     },
-
+    
     littleTitle: {
         color: 'black',
         fontSize: 20,
@@ -232,31 +233,37 @@ const styles = StyleSheet.create({
         color: 'black',
     },
 
-    fadingContainer: {
-        flex: 1,
-        backgroundColor: 'white',
-        paddingBottom: 20,
-        paddingHorizontal: 10,
-        marginHorizontal: 10,
-        borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
+    // fadingContainer: {
+    //     flex: 1,
+    //     backgroundColor: 'white',
+    //     paddingBottom: 20,
+    //     paddingHorizontal: 10,
+    //     marginHorizontal: 10,
+    //     borderRadius: 10,
+    //     shadowColor: '#000',
+    //     shadowOffset: {
+    //         width: 0,
+    //         height: 2,
+    //     },
+    //     shadowOpacity: 0.25,
+    //     shadowRadius: 3.84,
+    //     elevation: 5,
+    // },
+
+    // fadingView: {
+        //     position: 'absolute',
+        //     bottom: 0,
+        //     left: 0,
+        //     right: 0,
+        //     height: 20,
+        //     backgroundColor: 'white',
+        //     opacity: 0.5,
+        // },
+
+    singleSendButtonBox: {
+        width: '35%',
+        paddingTop: 14.5,
+        paddingBottom: 12.5,
     },
 
-    fadingView: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: 20,
-        backgroundColor: 'white',
-        opacity: 0.5,
-    },
-
-});
+    });
