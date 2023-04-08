@@ -1,7 +1,10 @@
-import { View, Text, Button, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput, ScrollView, Alert } from 'react-native';
 import React, {useState} from 'react';
 import { LinearBackground } from '../../Layouts/LinearBackground';
 import { NavigationProp } from '@react-navigation/native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+
+
 
 interface RegisterProps {
     navigation: NavigationProp<Record<string, object | undefined>>;
@@ -11,6 +14,13 @@ interface InputProps {
     selectedButton: string;
 }
 
+// interface DateProps {
+//     date: Date;
+// }
+
+interface writingDateProps{
+    writingDate: boolean;
+}
 const InputsBox = ({ selectedButton }: InputProps) => {
     if (selectedButton === 'driver') {
         return <DriverInputs />;
@@ -32,7 +42,59 @@ const TitleBox = ({ selectedButton }: InputProps) => {
 
 };
 
+const handleOnPressDate = ({ writingDate, setWritingDate }: { writingDate: boolean; setWritingDate: (value: boolean) => void; }) => {
+    if (!writingDate) {
+      setWritingDate(true);
+    }
+  };
+
+const DatePickerBox = ({ writingDate, date, setDate, showDate, setShowDate, setWritingDate }: { writingDate: boolean; date: Date; setDate: (value: Date) => void; showDate: boolean;setShowDate: (value: boolean) => void; setWritingDate: (value: boolean) => void; }) => {
+
+    if (writingDate) {
+
+        return <DateTimePicker
+        style={styles.littleInput}
+        value={new Date()}
+        mode="date"
+        onChange={(event, selectedDate) => {
+            const tempDate = new Date();
+            const currentDate = selectedDate || tempDate;
+            // console.log('---------------------------------------------');
+            // console.log('Date de la variable: ', currentDate);
+            // console.log('Date actual: ', tempDate);
+            // console.log('Year === 18?: ', tempDate.getFullYear() - currentDate.getFullYear() === 18);
+            const cond1 = !(currentDate.getDay() === tempDate.getDay() && currentDate.getMonth() === tempDate.getMonth() && currentDate.getFullYear() === tempDate.getFullYear());
+            const cond2 = ((((tempDate.getFullYear() - currentDate.getFullYear()) > 18)) || (((tempDate.getFullYear() - currentDate.getFullYear()) === 18)  && (tempDate.getMonth() > currentDate.getMonth())) || (((tempDate.getFullYear() - currentDate.getFullYear()) === 18)  && (tempDate.getMonth() === currentDate.getMonth()) && (tempDate.getDay() > currentDate.getDay())) );
+
+            if (cond1 && !cond2){
+                Alert.alert('The age must be 18 or older');
+            } else if (cond1 && cond2){
+                setDate(currentDate);
+            }
+            setWritingDate(false);
+            setShowDate(true);
+        }}
+        />;
+    }
+    // console.log(date);
+    if (showDate){
+        return (
+            <>
+                <Text>{date.toDateString()}</Text>
+            </>
+        );
+    }
+  
+    return null;
+  };
+  
+
+
+
 const DriverInputs = () => {
+    const [writingDate, setWritingDate] = useState(false);
+    const [showDate, setShowDate] = useState(false);
+    const [date, setDate] = useState(new Date());
     return (
         <ScrollView style = {styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
 
@@ -59,7 +121,12 @@ const DriverInputs = () => {
             </View>
             <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>Born date</Text>
-                <TextInput style = {styles.littleInput} placeholder="Your born date" placeholderTextColor={'grey'}/>
+                {/* <TextInput style = {styles.littleInput} placeholder="Your born date" placeholderTextColor={'grey'}/> */}
+
+                <DatePickerBox writingDate={writingDate} date={date} setDate={setDate} showDate={showDate} setShowDate={setShowDate} setWritingDate={setWritingDate} />
+
+                <Button title="Add date" onPress={() => handleOnPressDate({ writingDate, setWritingDate })} />
+
             </View>
             <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>CI</Text>
