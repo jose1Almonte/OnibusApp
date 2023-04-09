@@ -66,10 +66,10 @@ const DatePickerBox = ({ writingDate, date, setDate, showDate, setShowDate, setW
             // console.log('Date actual: ', tempDate);
             // console.log('Year === 18?: ', tempDate.getFullYear() - currentDate.getFullYear() === 18);
             const cond1 = !(currentDate.getDay() === tempDate.getDay() && currentDate.getMonth() === tempDate.getMonth() && currentDate.getFullYear() === tempDate.getFullYear());
-            const cond2 = ((((tempDate.getFullYear() - currentDate.getFullYear()) > 18)) || (((tempDate.getFullYear() - currentDate.getFullYear()) === 18)  && (tempDate.getMonth() > currentDate.getMonth())) || (((tempDate.getFullYear() - currentDate.getFullYear()) === 18)  && (tempDate.getMonth() === currentDate.getMonth()) && (tempDate.getDay() > currentDate.getDay())) );
+            const cond2 = ((((tempDate.getFullYear() - currentDate.getFullYear()) > 21)) || (((tempDate.getFullYear() - currentDate.getFullYear()) === 21)  && (tempDate.getMonth() > currentDate.getMonth())) || (((tempDate.getFullYear() - currentDate.getFullYear()) === 21)  && (tempDate.getMonth() === currentDate.getMonth()) && (tempDate.getDay() > currentDate.getDay())) );
 
             if (cond1 && !cond2){
-                Alert.alert('The age must be 18 or older');
+                Alert.alert('The age must be 21 or older');
             } else if (cond1 && cond2){
                 setDate(currentDate);
             }
@@ -78,9 +78,8 @@ const DatePickerBox = ({ writingDate, date, setDate, showDate, setShowDate, setW
         }}
         />;
     }
-    // console.log(date);
 
-    if (showDate){
+    if (showDate && !(tempDate.getFullYear() === date.getFullYear() && tempDate.getMonth() === date.getMonth() && tempDate.getDay() === date.getDay())){
         return (
             <>
                 <Text>{date.toDateString()}</Text>
@@ -98,13 +97,13 @@ const PickerView = ({selectedCI, setSelectedCI}: {selectedCI: string; setSelecte
         selectedValue={selectedCI}
         onValueChange={(itemValue) =>
         {
-            console.log(itemValue);
+            console.log(selectedCI);
             setSelectedCI(itemValue);
     }
         } style={styles.pickerViewCI}>
         <Picker.Item label="V" value="venezolano" />
         <Picker.Item label="E" value="extranjero" />
-        <Picker.Item label="J" value="jurídico" />
+        <Picker.Item label="J" value="juridico" />
         <Picker.Item label="P" value="pasaporte" />
         <Picker.Item label="G" value="gobernante" />
     </Picker>;
@@ -158,7 +157,12 @@ const DriverInputs = () => {
 
                     <PickerView selectedCI={selectedCI} setSelectedCI = {setSelectedCI}/>
 
-                    <TextInput style = {styles.littleInputCI} placeholder="CI" placeholderTextColor={'grey'}/>
+                    {selectedCI === 'extranjero' ?
+                        <TextInput style = {styles.littleInputCI} placeholder="CI or passport" placeholderTextColor={'grey'}/>
+                        :
+                        <TextInput style = {styles.littleInputCI} placeholder="CI" placeholderTextColor={'grey'}/>
+                    }
+
                 </View>
             </View>
             <View style = {styles.singleInputBox}>
