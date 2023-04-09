@@ -1,9 +1,10 @@
-import { View, Text, Button, StyleSheet, TextInput, ScrollView, Alert } from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput, ScrollView, Alert, Image } from 'react-native';
 import React, {useState} from 'react';
 import { LinearBackground } from '../../Layouts/LinearBackground';
 import { NavigationProp } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {Picker} from '@react-native-picker/picker';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 
 
@@ -117,6 +118,21 @@ const DriverInputs = () => {
     // const [showModal, setShowModal] = useState(false); // Mostrar opciones para escoger cedula
     const [selectedCI, setSelectedCI] = useState('');
 
+    const [image, setImage] = useState('https://via.placeholder.com/200');
+    const selectImage = () => {
+        const options = {
+            title: 'Selecciona una imagen',
+            storageOptions: {
+                skipBackup: true,
+                path: 'images',
+            },
+        };
+
+        launchImageLibrary(options, response => {
+            console.log('Response = ', response);
+        })
+    };
+
     return (
         <ScrollView style = {styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
 
@@ -168,6 +184,11 @@ const DriverInputs = () => {
             <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>CI picture</Text>
                 <TextInput style = {styles.littleInput} placeholder="Your CI picture" placeholderTextColor={'grey'}/>
+                <Button 
+                title = "Seleccionar Imagen"
+                onPress = { selectImage }
+                />
+                <Image style={styles.CIPictureImage} source={{uri: image}}/>
             </View>
             <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>Number plaque</Text>
@@ -387,6 +408,12 @@ const styles = StyleSheet.create({
 
         pickerViewCI: {
             width: '40%',
+        },
+
+        CIPictureImage: {
+            alignSelf: 'center',
+            height: 200,
+            width: 200,
         },
 
     });
