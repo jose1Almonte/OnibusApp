@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { LinearBackground } from '../../Layouts/LinearBackground';
 import { NavigationProp } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import {Picker} from '@react-native-picker/picker';
 
 
 
@@ -18,9 +19,10 @@ interface InputProps {
 //     date: Date;
 // }
 
-interface writingDateProps{
-    writingDate: boolean;
-}
+// interface writingDateProps{
+//     writingDate: boolean;
+// }
+
 const InputsBox = ({ selectedButton }: InputProps) => {
     if (selectedButton === 'driver') {
         return <DriverInputs />;
@@ -50,6 +52,7 @@ const handleOnPressDate = ({ writingDate, setWritingDate }: { writingDate: boole
 
 const DatePickerBox = ({ writingDate, date, setDate, showDate, setShowDate, setWritingDate }: { writingDate: boolean; date: Date; setDate: (value: Date) => void; showDate: boolean;setShowDate: (value: boolean) => void; setWritingDate: (value: boolean) => void; }) => {
 
+    const tempDate = new Date();
     if (writingDate) {
 
         return <DateTimePicker
@@ -57,7 +60,6 @@ const DatePickerBox = ({ writingDate, date, setDate, showDate, setShowDate, setW
         value={new Date()}
         mode="date"
         onChange={(event, selectedDate) => {
-            const tempDate = new Date();
             const currentDate = selectedDate || tempDate;
             // console.log('---------------------------------------------');
             // console.log('Date de la variable: ', currentDate);
@@ -77,6 +79,7 @@ const DatePickerBox = ({ writingDate, date, setDate, showDate, setShowDate, setW
         />;
     }
     // console.log(date);
+
     if (showDate){
         return (
             <>
@@ -84,17 +87,37 @@ const DatePickerBox = ({ writingDate, date, setDate, showDate, setShowDate, setW
             </>
         );
     }
-  
+
     return null;
   };
-  
 
 
+const PickerView = ({selectedCI, setSelectedCI}: {selectedCI: string; setSelectedCI: (value: string) => void}) => {
+
+    return <Picker
+        selectedValue={selectedCI}
+        onValueChange={(itemValue) =>
+        {
+            console.log(itemValue);
+            setSelectedCI(itemValue);
+    }
+        } style={styles.pickerViewCI}>
+        <Picker.Item label="V" value="venezolano" />
+        <Picker.Item label="E" value="extranjero" />
+        <Picker.Item label="J" value="jurídico" />
+        <Picker.Item label="P" value="pasaporte" />
+        <Picker.Item label="G" value="gobernante" />
+    </Picker>;
+
+};
 
 const DriverInputs = () => {
     const [writingDate, setWritingDate] = useState(false);
     const [showDate, setShowDate] = useState(false);
     const [date, setDate] = useState(new Date());
+    // const [showModal, setShowModal] = useState(false); // Mostrar opciones para escoger cedula
+    const [selectedCI, setSelectedCI] = useState('');
+
     return (
         <ScrollView style = {styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
 
@@ -113,11 +136,11 @@ const DriverInputs = () => {
             </View>
             <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>Password</Text>
-                <TextInput style = {styles.littleInput} placeholder="min 6 carts." placeholderTextColor={'grey'}/>
+                <TextInput style = {styles.littleInput} placeholder="min 6 carts." placeholderTextColor={'grey'} secureTextEntry/>
             </View>
             <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>ConfirmPassword</Text>
-                <TextInput style = {styles.littleInput} placeholder="confirm your password" placeholderTextColor={'grey'}/>
+                <TextInput style = {styles.littleInput} placeholder="confirm your password" placeholderTextColor={'grey'} secureTextEntry/>
             </View>
             <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>Born date</Text>
@@ -130,7 +153,13 @@ const DriverInputs = () => {
             </View>
             <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>CI</Text>
-                <TextInput style = {styles.littleInput} placeholder="CI" placeholderTextColor={'grey'}/>
+                <View style = {styles.rowingInputs}>
+                    {/* <Text onPress={() => setShowModal(true)}>Selection</Text> */}
+
+                    <PickerView selectedCI={selectedCI} setSelectedCI = {setSelectedCI}/>
+
+                    <TextInput style = {styles.littleInputCI} placeholder="CI" placeholderTextColor={'grey'}/>
+                </View>
             </View>
             <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>CI picture</Text>
@@ -159,6 +188,14 @@ const DriverInputs = () => {
             <View style = {styles.singleInputBox}>
                 <Text style = {styles.littleTitle}>Personal selfie</Text>
                 <TextInput style = {styles.littleInput} placeholder="Your personal selfie" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Driver license</Text>
+                <TextInput style = {styles.littleInput} placeholder="Your driver license" placeholderTextColor={'grey'}/>
+            </View>
+            <View style = {styles.singleInputBox}>
+                <Text style = {styles.littleTitle}>Certificado de saberes</Text>
+                <TextInput style = {styles.littleInput} placeholder="Your knowledge certify" placeholderTextColor={'grey'}/>
             </View>
             <View style={styles.singleSendButtonBox}>
                 <Button title="Send info"/>
@@ -299,7 +336,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         color: 'black',
     },
-
+    
     // fadingContainer: {
     //     flex: 1,
     //     backgroundColor: 'white',
@@ -327,10 +364,25 @@ const styles = StyleSheet.create({
         //     opacity: 0.5,
         // },
 
-    singleSendButtonBox: {
-        width: '35%',
-        paddingTop: 14.5,
-        paddingBottom: 12.5,
-    },
+        singleSendButtonBox: {
+            width: '35%',
+            paddingTop: 14.5,
+            paddingBottom: 12.5,
+        },
+
+        rowingInputs: {
+            flexDirection: 'row',
+        },
+
+        littleInputCI: {
+            width: '60%',
+            backgroundColor: '#FFFBED',
+            borderRadius: 5,
+            color: 'black',
+        },
+
+        pickerViewCI: {
+            width: '40%',
+        },
 
     });
